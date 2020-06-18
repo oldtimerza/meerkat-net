@@ -25,32 +25,32 @@ namespace Meerkat.Model
         {
             StateMachine<State, Trigger> stateMachine = new StateMachine<State, Trigger>(State.NAVIGATION);
             TodoStateMachine todoStateMachine = new TodoStateMachine(stateMachine);
-            stateMachine.Configure(State.INSERT).Permit(Trigger.CREATE_TODO, State.NAVIGATION).OnExit(() => todoStateMachine.handleNextCommand());
-            stateMachine.Configure(State.INSERT).Permit(Trigger.EXIT_EDITOR, State.NAVIGATION).OnExit(() => todoStateMachine.handleNextCommand());
-            stateMachine.Configure(State.NAVIGATION).Permit(Trigger.ENTER_EDITOR, State.INSERT).OnExit(() => todoStateMachine.handleNextCommand());
+            stateMachine.Configure(State.INSERT).Permit(Trigger.CREATE_TODO, State.NAVIGATION).OnExit(() => todoStateMachine.HandleNextCommand());
+            stateMachine.Configure(State.INSERT).Permit(Trigger.EXIT_EDITOR, State.NAVIGATION).OnExit(() => todoStateMachine.HandleNextCommand());
+            stateMachine.Configure(State.NAVIGATION).Permit(Trigger.ENTER_EDITOR, State.INSERT).OnExit(() => todoStateMachine.HandleNextCommand());
             return todoStateMachine;
         }
 
-        public void addTodoItem(Todo item)
+        public void AddTodoItem(Todo item)
         {
             this.todoList.Add(item);
         }
 
-        public void pushCommand(StateMachineCommand command)
+        public void PushCommand(StateMachineCommand command)
         {
             this.commands.Enqueue(command);
         }
 
-        public void fire(Trigger trigger)
+        public void Fire(Trigger trigger)
         {
             this.stateMachine.Fire(trigger);
         }
 
-        private void handleNextCommand()
+        private void HandleNextCommand()
         {
             while (commands.Any())
             {
-                commands.Dequeue().execute(this);
+                commands.Dequeue().Execute(this);
             }
         }
     }

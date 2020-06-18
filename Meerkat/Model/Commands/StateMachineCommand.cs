@@ -8,6 +8,6 @@ namespace Meerkat.Model.Commands
 {
     interface StateMachineCommand
     {
-        void execute(TodoStateMachine todoStateMachine);
+        void Execute(TodoStateMachine todoStateMachine);
     }
 }

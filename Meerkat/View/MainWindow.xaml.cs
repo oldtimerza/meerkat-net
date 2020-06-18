@@ -23,7 +23,7 @@ namespace Meerkat.View
     public partial class MainWindow : Window
     {
         [Inject]
-        private TodoStateMachine vimStateMachine;
+        private TodoStateMachine todoStateMachine;
 
         public MainWindow()
         {

@@ -15,9 +15,9 @@ namespace Meerkat.Model.Commands
             this.item = item;
         }
 
-        public void execute(TodoStateMachine todoStateMachine)
+        public void Execute(TodoStateMachine todoStateMachine)
         {
-            todoStateMachine.addTodoItem(item);
+            todoStateMachine.AddTodoItem(item);
         }
     }
 }
