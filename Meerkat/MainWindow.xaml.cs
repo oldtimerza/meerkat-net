@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Meerkat.Model;
+using Ninject;
 
 namespace Meerkat
 {
@@ -20,6 +22,9 @@ namespace Meerkat
     /// </summary>
     public partial class MainWindow : Window
     {
+        [Inject]
+        private VimStateMachine vimStateMachine;
+
         public MainWindow()
         {
             InitializeComponent();
