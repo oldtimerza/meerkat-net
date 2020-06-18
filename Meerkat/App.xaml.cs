@@ -1,4 +1,5 @@
 ﻿using Meerkat.Model;
+using Meerkat.View;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,17 @@ namespace Meerkat
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            this.container = new StandardKernel();
-
             base.OnStartup(e);
+            this.container = new StandardKernel();
+            this.ConfigureContainer();
+            this.ComposeObjects();
+            Current.MainWindow.Show();
         }
 
         private void ConfigureContainer()
         {
             this.container = new StandardKernel();
-            container.Bind<VimStateMachine>().To<VimStateMachine>();
+            container.Bind<TodoStateMachine>().ToMethod<TodoStateMachine>(conext => TodoStateMachine.Default());
         }
 
         private void ComposeObjects()

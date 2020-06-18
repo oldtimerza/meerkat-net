@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Meerkat.Model.Triggers
+namespace Meerkat.Model
 {
-    enum Trigger
+    class Todo
     {
-        CREATE_TODO,
-        ENTER_EDITOR,
-        EXIT_EDITOR
     }
 }

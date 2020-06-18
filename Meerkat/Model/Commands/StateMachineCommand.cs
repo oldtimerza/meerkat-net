@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Meerkat.Model.Triggers
+namespace Meerkat.Model.Commands
 {
-    enum Trigger
+    interface StateMachineCommand
     {
-        CREATE_TODO,
-        ENTER_EDITOR,
-        EXIT_EDITOR
+        void execute(TodoStateMachine todoStateMachine);
     }
 }

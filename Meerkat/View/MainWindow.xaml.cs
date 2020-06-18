@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Meerkat.Model;
 using Ninject;
 
-namespace Meerkat
+namespace Meerkat.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,7 +23,7 @@ namespace Meerkat
     public partial class MainWindow : Window
     {
         [Inject]
-        private VimStateMachine vimStateMachine;
+        private TodoStateMachine vimStateMachine;
 
         public MainWindow()
         {
