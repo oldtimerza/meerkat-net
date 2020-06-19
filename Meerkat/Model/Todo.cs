@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Meerkat.Model
+﻿namespace Meerkat.Model
 {
-    class Todo
+    public class Todo
     {
+        public bool done { get; set; }
+        public string message { get; set; }
     }
 }

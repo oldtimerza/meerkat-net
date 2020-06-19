@@ -69,18 +69,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\Commands\AddTodo.cs" />
-    <Compile Include="Model\Commands\StateMachineCommand.cs" />
     <Compile Include="Model\Todo.cs" />
+    <Compile Include="ViewModel\TodosViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Triggers\Trigger.cs" />
-    <Compile Include="Model\TodoStateMachine.cs" />
-    <Compile Include="Model\States\State.cs" />
+    <Compile Include="Model\Trigger.cs" />
+    <Compile Include="Model\MeerkatApp.cs" />
+    <Compile Include="Model\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,8 +107,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

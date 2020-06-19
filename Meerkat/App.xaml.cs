@@ -1,12 +1,8 @@
 ﻿using Meerkat.Model;
 using Meerkat.View;
+using Meerkat.ViewModel;
 using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using Stateless;
 using System.Windows;
 
 namespace Meerkat
@@ -29,14 +25,18 @@ namespace Meerkat
 
         private void ConfigureContainer()
         {
-            this.container = new StandardKernel();
-            container.Bind<TodoStateMachine>().ToMethod<TodoStateMachine>(conext => TodoStateMachine.Default());
+            container = new StandardKernel();
+            container.Bind<StateMachine<State, Model.Trigger>>().To<StateMachine<State, Model.Trigger>>();
+            container.Bind<MeerkatApp>().To<MeerkatApp>();
+            container.Bind<TodosViewModel>().To<TodosViewModel>();
         }
 
         private void ComposeObjects()
         {
+            ViewModelBase viewModel = container.Get<TodosViewModel>();
             Current.MainWindow = this.container.Get<MainWindow>();
             Current.MainWindow.Title = "Meerkat";
+            Current.MainWindow.DataContext = viewModel;
         }
     }
 }
