@@ -17,7 +17,28 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBox x:Name="TodoMessageText" HorizontalAlignment="Left" Height="23" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="673" IsEnabled="{ Binding IsInsertMode }"/>
-        <Button x:Name="AddTodoButton" Content="Add" HorizontalAlignment="Left" Margin="698,9,0,0" VerticalAlignment="Top" Width="75" Height="24" Command="{ Binding AddTodo }" IsEnabled="{ Binding IsInsertMode }"/>
+        <TextBox x:Name="TodoMessageText"
+                 HorizontalAlignment="Left"
+                 Height="20"
+                 Margin="20,10,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="753"
+                 Focusable="True"
+                 local:FocusExtension.IsFocused="{ Binding FocusInsertText }"
+                 Text="{ Binding InsertText, Mode=TwoWay}"
+                 IsEnabled="{ Binding IsInsertMode }">
+            <TextBox.InputBindings>
+                <KeyBinding
+                    Key="Return"
+                    Command="{ Binding AddTodo }" 
+                    CommandParameter="{ Binding Text, ElementName=TodoMessageText}" />
+            </TextBox.InputBindings>
+        </TextBox>
     </Grid>
+    <Window.InputBindings>
+        <KeyBinding 
+                    Key="I"
+                    Command="{Binding EnterInsertMode}" />
+    </Window.InputBindings>
 </Window>

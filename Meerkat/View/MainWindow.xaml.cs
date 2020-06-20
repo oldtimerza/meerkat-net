@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace Meerkat.View
 {
@@ -7,6 +8,8 @@ namespace Meerkat.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static RoutedCommand InsertModeShortcutCommand = new RoutedCommand();
+
         public MainWindow()
         {
             InitializeComponent();

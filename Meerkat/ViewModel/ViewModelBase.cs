@@ -4,11 +4,12 @@ using System.Diagnostics;
 
 namespace Meerkat.ViewModel
 {
-    public class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
         private readonly bool ThrowOnInvalidPropertyName = false;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             this.VerifyPropertyName(propertyName);

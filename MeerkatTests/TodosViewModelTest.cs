@@ -4,6 +4,8 @@ using Meerkat.ViewModel;
 using Meerkat.Model;
 using Moq;
 using System.Windows.Input;
+using System.ComponentModel;
+using Meerkat.ViewModel.Command;
 
 namespace MeerkatTests
 {
@@ -12,14 +14,16 @@ namespace MeerkatTests
     {
         private TodosViewModel todosViewModel;
         private Mock<IMeerkatApp> mockMeerkatApp;
-        private Mock<ICommand> mockAddTodo;
+        private Mock<INotifyExecutionCommand> mockAddTodo;
+        private Mock<INotifyExecutionCommand> mockEnterInsertMode;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            mockAddTodo = new Mock<ICommand>();
+            mockAddTodo = new Mock<INotifyExecutionCommand>();
+            mockEnterInsertMode = new Mock<INotifyExecutionCommand>();
             mockMeerkatApp = new Mock<IMeerkatApp>();
-            todosViewModel = new TodosViewModel(mockMeerkatApp.Object, mockAddTodo.Object);
+            todosViewModel = new TodosViewModel(mockMeerkatApp.Object, mockAddTodo.Object, mockEnterInsertMode.Object);
         }
 
         [TestMethod]

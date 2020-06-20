@@ -8,29 +8,28 @@ using System.Windows.Input;
 
 namespace Meerkat.ViewModel.Command
 {
-    public class AddTodo : INotifyExecutionCommand
+    public class EnterInsertMode : INotifyExecutionCommand
     {
-        public class AddTodoNeeded : Attribute { }
+        public class EnterInsertModeNeeded : Attribute { }
+
+        private IMeerkatApp meerkatApp;
 
         public event EventHandler CanExecuteChanged;
         public event CommandExecutedHandler Executed;
 
-        private IMeerkatApp meerkatApp;
-
-        public AddTodo(IMeerkatApp meerkatApp)
+        public EnterInsertMode(IMeerkatApp meerkatApp)
         {
             this.meerkatApp = meerkatApp;
         }
 
         public bool CanExecute(object parameter)
         {
-            return null != meerkatApp;
+            return null != meerkatApp && meerkatApp.CurrentState != State.INSERT;
         }
-
 
         public void Execute(object parameter)
         {
-            meerkatApp.CreateTodo(new Todo(false, (string)parameter));
+            meerkatApp.EnterInsert();
             Executed?.Invoke(true);
         }
     }

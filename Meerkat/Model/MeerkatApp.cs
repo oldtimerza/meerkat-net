@@ -1,5 +1,6 @@
 ﻿using Stateless;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Meerkat.Model
 {
@@ -28,7 +29,10 @@ namespace Meerkat.Model
         
         public virtual State CurrentState
         {
-            get { return stateMachine.State; }
+            get
+            {
+                return stateMachine.State;
+            }
         }
 
         public void CreateTodo(Todo todo)
