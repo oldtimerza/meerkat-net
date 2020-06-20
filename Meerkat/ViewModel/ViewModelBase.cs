@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Meerkat.ViewModel
 {
-    class ViewModelBase
+    public class ViewModelBase
     {
         private readonly bool ThrowOnInvalidPropertyName = false;
 

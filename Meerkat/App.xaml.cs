@@ -26,8 +26,9 @@ namespace Meerkat
         private void ConfigureContainer()
         {
             container = new StandardKernel();
-            container.Bind<StateMachine<State, Model.Trigger>>().To<StateMachine<State, Model.Trigger>>();
-            container.Bind<MeerkatApp>().To<MeerkatApp>();
+            container.Bind<IRepository<Todo>>().To<TodoRepository>();
+            container.Bind<StateMachine<State, Model.Trigger>>().ToMethod<StateMachine<State, Model.Trigger>>(context => new StateMachine<State, Model.Trigger>(State.NAVIGATION));
+            container.Bind<IMeerkatApp>().To<MeerkatApp>();
             container.Bind<TodosViewModel>().To<TodosViewModel>();
         }
 

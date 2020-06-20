@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Meerkat.Model
 {
-    public class MeerkatApp
+    public class MeerkatApp : IMeerkatApp
     {
         private StateMachine<State, Trigger> stateMachine;
-        private List<Todo> todoList;
+        private IRepository<Todo> repository;
         private StateMachine<State, Trigger>.TriggerWithParameters<Todo> createTodoTrigger;
 
-        public MeerkatApp(StateMachine<State, Trigger> stateMachine)
+        public MeerkatApp(StateMachine<State, Trigger> stateMachine, IRepository<Todo> todoRepository)
         {
             this.stateMachine = stateMachine;
-            todoList = new List<Todo>();
+            this.repository = todoRepository;
             createTodoTrigger = this.stateMachine.SetTriggerParameters<Todo>(Trigger.CREATE_TODO);
             stateMachine.Configure(State.INSERT).Permit(Trigger.EXIT_EDITOR, State.NAVIGATION);
             stateMachine.Configure(State.INSERT).Permit(Trigger.CREATE_TODO, State.NAVIGATION);
@@ -21,9 +21,9 @@ namespace Meerkat.Model
                 .Permit(Trigger.ENTER_EDITOR, State.INSERT);
         }
 
-        public IReadOnlyCollection<Todo> TodoList
+        public virtual IReadOnlyCollection<Todo> Todos
         {
-            get { return todoList.AsReadOnly(); }
+            get { return repository.get().AsReadOnly(); }
         }
 
         public void CreateTodo(Todo todo)
@@ -43,7 +43,7 @@ namespace Meerkat.Model
 
         private void AddTodoItem(Todo item)
         {
-            todoList.Add(item);
+            repository.create(item);
         }
     }
 }

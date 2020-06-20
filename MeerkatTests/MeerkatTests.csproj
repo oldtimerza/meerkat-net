@@ -67,6 +67,8 @@
   <ItemGroup>
     <Compile Include="MeerkatAppTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TodoRepositoryTest.cs" />
+    <Compile Include="TodosViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

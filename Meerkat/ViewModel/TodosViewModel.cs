@@ -1,19 +1,22 @@
 ﻿using Meerkat.Model;
-using Ninject;
 using System.Collections.Generic;
 
 namespace Meerkat.ViewModel
 {
-    class TodosViewModel : ViewModelBase
+    public class TodosViewModel : ViewModelBase
     {
-        [Inject]
-        private MeerkatApp model;
+        private IMeerkatApp meerkatApp;
+
+        public TodosViewModel(IMeerkatApp meerkatApp)
+        {
+            this.meerkatApp = meerkatApp;
+        }
 
         public IReadOnlyCollection<Todo> Todos
         {
             get
             {
-                return model.TodoList;
+                return meerkatApp.Todos;
             }
         }
     }
