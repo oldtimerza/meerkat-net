@@ -12,10 +12,7 @@ namespace Meerkat.Model
 
         public TodoRepository()
         {
-            todos = new List<Todo>()
-            {
-                new Todo(false, "Hello todo App")
-            };
+            todos = new List<Todo>();
         }
 
         public void create(Todo todo)

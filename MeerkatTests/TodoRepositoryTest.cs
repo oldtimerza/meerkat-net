@@ -22,14 +22,6 @@ namespace MeerkatTests
         }
 
         [TestMethod]
-        public void ShouldReturnAllTodosOnGet()
-        {
-            List<Todo> todos = todoRepository.get();
-
-            Assert.AreEqual(todos.Count, 1);
-        }
-
-        [TestMethod]
         public void ShouldCreateTodo()
         {
             Todo todo = new Todo(false, "Some todo message");
@@ -37,7 +29,9 @@ namespace MeerkatTests
             todoRepository.create(todo);
             List<Todo> todos = todoRepository.get();
 
-            Assert.AreEqual(todos.Count, 2);
+            Assert.AreEqual(todos.Count, 1);
+            Todo onlyTodo = todos[0];
+            Assert.AreEqual(todo, onlyTodo);
         }
     }
 }
