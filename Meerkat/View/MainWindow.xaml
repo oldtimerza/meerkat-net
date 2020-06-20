@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
-        <ListBox Height="350" Margin="20" ItemsSource="{ Binding Todos }">
+        <ListBox Height="350" Margin="20" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

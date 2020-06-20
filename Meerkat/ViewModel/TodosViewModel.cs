@@ -1,11 +1,7 @@
 ﻿using Meerkat.Model;
 using Meerkat.ViewModel.Command;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Input;
-using static Meerkat.ViewModel.Command.AddTodo;
-using static Meerkat.ViewModel.Command.EnterInsertMode;
 
 namespace Meerkat.ViewModel
 {
@@ -14,14 +10,13 @@ namespace Meerkat.ViewModel
         private IMeerkatApp meerkatApp;
         private string insertText;
         private bool focusInsertText;
+        private int selectedIndex;
+        private ICommand addTodo;
+        private ICommand enterInsertMode;
 
-        public TodosViewModel(IMeerkatApp meerkatApp, [AddTodoNeeded] INotifyExecutionCommand addTodo, [EnterInsertModeNeeded] INotifyExecutionCommand enterInsertMode)
+        public TodosViewModel(IMeerkatApp meerkatApp)
         {
             this.meerkatApp = meerkatApp;
-            AddTodo = addTodo;
-            EnterInsertMode = enterInsertMode;
-            addTodo.Executed += AddTodoExecuted;
-            enterInsertMode.Executed += EnterInsertExecuted;
         }
 
 
@@ -41,9 +36,39 @@ namespace Meerkat.ViewModel
             }
         }
 
-        public ICommand AddTodo { get; }
+        public ICommand AddTodo {
+            get
+            {
+                if(addTodo == null)
+                {
+                    addTodo = new RelayCommand(p => {
+                        meerkatApp.CreateTodo(new Todo(false, (string)p));
+                        InsertText = "";
+                        FocusInsertText = false;
+                        OnPropertyChanged("IsInsertMode");
+                        OnPropertyChanged("Todos");
+                    },
+                    p => meerkatApp.CurrentState == State.INSERT);
+                }
+                return addTodo;
+            }
+        }
 
-        public ICommand EnterInsertMode { get; }
+        public ICommand EnterInsertMode {
+            get
+            {
+                if(enterInsertMode == null)
+                {
+                    enterInsertMode = new RelayCommand(p => {
+                        meerkatApp.EnterInsert();
+                        FocusInsertText = true;
+                        OnPropertyChanged("IsInsertMode");
+                    },
+                    p => meerkatApp.CurrentState == State.NAVIGATION);
+                }
+                return enterInsertMode;
+            }
+        }
 
         public string InsertText
         {
@@ -73,26 +98,18 @@ namespace Meerkat.ViewModel
             }
         }
 
-        private void AddTodoExecuted(bool isSuccessful)
+        public int SelectedIndex
         {
-            InsertText = "";
-            FocusInsertText = false;
-            if (isSuccessful)
+            get
             {
-                OnPropertyChanged("IsInsertMode");
-                OnPropertyChanged("Todos");
+                return selectedIndex;
+            }
+
+            set
+            {
+                selectedIndex = value;
+                OnPropertyChanged("SelectedIndex");
             }
         }
-
-        private void EnterInsertExecuted(bool isSuccessful)
-        {
-            FocusInsertText = true;
-            if (isSuccessful)
-            {
-                OnPropertyChanged("IsInsertMode");
-                OnPropertyChanged("Todos");
-            }
-        }
-
     }
 }

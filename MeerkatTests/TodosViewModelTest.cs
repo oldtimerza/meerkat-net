@@ -14,16 +14,12 @@ namespace MeerkatTests
     {
         private TodosViewModel todosViewModel;
         private Mock<IMeerkatApp> mockMeerkatApp;
-        private Mock<INotifyExecutionCommand> mockAddTodo;
-        private Mock<INotifyExecutionCommand> mockEnterInsertMode;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            mockAddTodo = new Mock<INotifyExecutionCommand>();
-            mockEnterInsertMode = new Mock<INotifyExecutionCommand>();
             mockMeerkatApp = new Mock<IMeerkatApp>();
-            todosViewModel = new TodosViewModel(mockMeerkatApp.Object, mockAddTodo.Object, mockEnterInsertMode.Object);
+            todosViewModel = new TodosViewModel(mockMeerkatApp.Object);
         }
 
         [TestMethod]
@@ -44,6 +40,27 @@ namespace MeerkatTests
             mockMeerkatApp.Setup(app => app.CurrentState).Returns(State.NAVIGATION);
 
             Assert.IsFalse(todosViewModel.IsInsertMode);
+        }
+
+        [TestMethod]
+        public void ShouldCreateTodo()
+        {
+            string message = "todo message";
+
+            todosViewModel.AddTodo.Execute(message);
+
+            mockMeerkatApp.Verify(app => app.CreateTodo(new Todo(false, message)));
+            Assert.AreEqual(todosViewModel.InsertText, "");
+            Assert.AreEqual(todosViewModel.FocusInsertText, false);
+        }
+
+        [TestMethod]
+        public void ShouldEnterInsertMode()
+        {
+            todosViewModel.EnterInsertMode.Execute(null);
+
+            mockMeerkatApp.Verify(app => app.EnterInsert());
+            Assert.AreEqual(todosViewModel.FocusInsertText, true);
         }
     }
 }
