@@ -1,10 +1,9 @@
 ﻿using Stateless;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Meerkat.Model
 {
-    public class MeerkatApp : IMeerkatApp
+    public class MeerkatApp : IStateTracker, ITodoTracker
     {
         private StateMachine<State, Trigger> stateMachine;
         private IRepository<Todo> repository;

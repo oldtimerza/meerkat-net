@@ -3,9 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Meerkat.ViewModel;
 using Meerkat.Model;
 using Moq;
-using System.Windows.Input;
-using System.ComponentModel;
-using Meerkat.ViewModel.Command;
 
 namespace MeerkatTests
 {
@@ -13,13 +10,15 @@ namespace MeerkatTests
     public class TodosViewModelTest
     {
         private TodosViewModel todosViewModel;
-        private Mock<IMeerkatApp> mockMeerkatApp;
+        private Mock<IStateTracker> mockStateTracker;
+        private Mock<ITodoTracker> mockTodoTracker;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            mockMeerkatApp = new Mock<IMeerkatApp>();
-            todosViewModel = new TodosViewModel(mockMeerkatApp.Object);
+            mockStateTracker = new Mock<IStateTracker>();
+            mockTodoTracker = new Mock<ITodoTracker>();
+            todosViewModel = new TodosViewModel(mockStateTracker.Object, mockTodoTracker.Object);
         }
 
         [TestMethod]
@@ -27,7 +26,7 @@ namespace MeerkatTests
         {
             List<Todo> expectedTodos = new List<Todo>();
             expectedTodos.Add(new Todo(false, "Test todo"));
-            mockMeerkatApp.Setup(meerkatApp => meerkatApp.Todos).Returns(expectedTodos.AsReadOnly());
+            mockTodoTracker.Setup(tracker => tracker.Todos).Returns(expectedTodos.AsReadOnly());
 
             IReadOnlyCollection<Todo> actualTodos = todosViewModel.Todos;
 
@@ -37,7 +36,7 @@ namespace MeerkatTests
         [TestMethod]
         public void ShouldHaveIsInsertModeFalseWhenInNavigationMode()
         {
-            mockMeerkatApp.Setup(app => app.CurrentState).Returns(State.NAVIGATION);
+            mockStateTracker.Setup(tracker => tracker.CurrentState).Returns(State.NAVIGATION);
 
             Assert.IsFalse(todosViewModel.IsInsertMode);
         }
@@ -49,7 +48,7 @@ namespace MeerkatTests
 
             todosViewModel.AddTodo.Execute(message);
 
-            mockMeerkatApp.Verify(app => app.CreateTodo(new Todo(false, message)));
+            mockTodoTracker.Verify(tracker => tracker.CreateTodo(new Todo(false, message)));
             Assert.AreEqual(todosViewModel.InsertText, "");
             Assert.AreEqual(todosViewModel.FocusInsertText, false);
         }
@@ -59,7 +58,7 @@ namespace MeerkatTests
         {
             todosViewModel.EnterInsertMode.Execute(null);
 
-            mockMeerkatApp.Verify(app => app.EnterInsert());
+            mockStateTracker.Verify(app => app.EnterInsert());
             Assert.AreEqual(todosViewModel.FocusInsertText, true);
         }
     }

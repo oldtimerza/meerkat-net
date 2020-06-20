@@ -69,7 +69,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\IMeerkatApp.cs" />
+    <Compile Include="Model\IStateTracker.cs" />
+    <Compile Include="Model\ITodoTracker.cs" />
     <Compile Include="Model\Repository\IRepository.cs" />
     <Compile Include="Model\Domain\Todo.cs" />
     <Compile Include="Model\Repository\TodoRepository.cs" />
