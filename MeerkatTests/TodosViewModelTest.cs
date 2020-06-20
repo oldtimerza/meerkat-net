@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Meerkat.ViewModel;
 using Meerkat.Model;
 using Moq;
+using System.Windows.Input;
 
 namespace MeerkatTests
 {
@@ -13,12 +12,14 @@ namespace MeerkatTests
     {
         private TodosViewModel todosViewModel;
         private Mock<IMeerkatApp> mockMeerkatApp;
+        private Mock<ICommand> mockAddTodo;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            mockAddTodo = new Mock<ICommand>();
             mockMeerkatApp = new Mock<IMeerkatApp>();
-            todosViewModel = new TodosViewModel(mockMeerkatApp.Object);
+            todosViewModel = new TodosViewModel(mockMeerkatApp.Object, mockAddTodo.Object);
         }
 
         [TestMethod]
@@ -31,6 +32,14 @@ namespace MeerkatTests
             IReadOnlyCollection<Todo> actualTodos = todosViewModel.Todos;
 
             Assert.AreEqual(1, actualTodos.Count);
+        }
+
+        [TestMethod]
+        public void ShouldHaveIsInsertModeFalseWhenInNavigationMode()
+        {
+            mockMeerkatApp.Setup(app => app.CurrentState).Returns(State.NAVIGATION);
+
+            Assert.IsFalse(todosViewModel.IsInsertMode);
         }
     }
 }

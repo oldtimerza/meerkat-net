@@ -1,9 +1,11 @@
 ﻿using Meerkat.Model;
 using Meerkat.View;
 using Meerkat.ViewModel;
+using Meerkat.ViewModel.Command;
 using Ninject;
 using Stateless;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Meerkat
 {
@@ -17,9 +19,9 @@ namespace Meerkat
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            this.container = new StandardKernel();
-            this.ConfigureContainer();
-            this.ComposeObjects();
+            container = new StandardKernel();
+            ConfigureContainer();
+            ComposeObjects();
             Current.MainWindow.Show();
         }
 
@@ -29,6 +31,7 @@ namespace Meerkat
             container.Bind<IRepository<Todo>>().To<TodoRepository>();
             container.Bind<StateMachine<State, Model.Trigger>>().ToMethod<StateMachine<State, Model.Trigger>>(context => new StateMachine<State, Model.Trigger>(State.NAVIGATION));
             container.Bind<IMeerkatApp>().To<MeerkatApp>();
+            container.Bind<ICommand>().To<AddTodo>();
             container.Bind<TodosViewModel>().To<TodosViewModel>();
         }
 

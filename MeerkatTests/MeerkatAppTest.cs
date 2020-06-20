@@ -14,18 +14,12 @@ namespace MeerkatTests
         private Mock<IRepository<Todo>> mockRepository;
         private MeerkatApp app;
         private StateMachine<State, Trigger> stateMachine;
-        private State currentState;
-        private Action<State> stateAccessor; 
-        private Func<State> stateMutator;
 
         [TestInitialize]
         public void TestInitialize()
         {
             mockRepository = new Mock<IRepository<Todo>>();
-            currentState = State.INSERT;
-            stateAccessor = state => currentState = state;
-            stateMutator = () => currentState;
-            stateMachine = new StateMachine<State, Trigger>(stateMutator, stateAccessor);
+            stateMachine = new StateMachine<State, Trigger>(State.INSERT);
             app = new MeerkatApp(stateMachine, mockRepository.Object);
         }
 
@@ -38,7 +32,7 @@ namespace MeerkatTests
 
             app.CreateTodo(todo);
 
-            Assert.AreEqual(State.NAVIGATION, currentState);
+            Assert.AreEqual(State.NAVIGATION, app.CurrentState);
             Assert.IsNotNull(app.Todos);
             Assert.AreEqual(1, app.Todos.Count);
             Todo actualTodo = app.Todos.First();
@@ -50,19 +44,18 @@ namespace MeerkatTests
         {
             app.EnterNavigation();
 
-            Assert.AreEqual(State.NAVIGATION, currentState);
+            Assert.AreEqual(State.NAVIGATION, app.CurrentState);
         }
 
         [TestMethod]
         public void ShouldEnterInsertModeFromNavigationMode()
         {
-            currentState = State.NAVIGATION;
-            StateMachine<State, Trigger> insertStateMachine = new StateMachine<State, Trigger>(stateMutator, stateAccessor);
+            StateMachine<State, Trigger> insertStateMachine = new StateMachine<State, Trigger>(State.NAVIGATION);
             app = new MeerkatApp(insertStateMachine, mockRepository.Object);
 
             app.EnterInsert();
 
-            Assert.AreEqual(State.INSERT, currentState);
+            Assert.AreEqual(State.INSERT, app.CurrentState);
         }
     }
 }

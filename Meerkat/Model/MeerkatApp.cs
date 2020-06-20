@@ -25,6 +25,11 @@ namespace Meerkat.Model
         {
             get { return repository.get().AsReadOnly(); }
         }
+        
+        public virtual State CurrentState
+        {
+            get { return stateMachine.State; }
+        }
 
         public void CreateTodo(Todo todo)
         {

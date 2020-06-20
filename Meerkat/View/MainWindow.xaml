@@ -7,14 +7,17 @@
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
-        <ListBox Margin="20" ItemsSource="{Binding Todos}">
+        <ListBox Height="350" Margin="20" ItemsSource="{ Binding Todos }">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Message}" />
+                        <CheckBox IsChecked="{ Binding Done }"/>
+                        <TextBlock Text="{ Binding Message }" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <TextBox x:Name="TodoMessageText" HorizontalAlignment="Left" Height="23" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="673" IsEnabled="{ Binding IsInsertMode }"/>
+        <Button x:Name="AddTodoButton" Content="Add" HorizontalAlignment="Left" Margin="698,9,0,0" VerticalAlignment="Top" Width="75" Height="24" Command="{ Binding AddTodo }" IsEnabled="{ Binding IsInsertMode }"/>
     </Grid>
 </Window>
