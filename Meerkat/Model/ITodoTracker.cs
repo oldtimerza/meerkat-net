@@ -1,16 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Meerkat.Model
 {
+    /// <summary>
+    /// Keeps track of a Todo instances and manipulating their done state
+    /// </summary>
     public interface ITodoTracker
     {
+        /// <summary>
+        /// The list of maintained Todo items
+        /// </summary>
         IReadOnlyCollection<Todo> Todos { get; }
+
+        /// <summary>
+        /// Create a new Todo item in the list
+        /// </summary>
+        /// <param name="todo">The new Todo item</param>
         void CreateTodo(Todo todo);
-        void ToggleTodo(int index);
-        void RemoveTodo(int index);
+
+        /// <summary>
+        /// Change the Done state of the Todo item.
+        /// </summary>
+        /// <param name="id">The id of the Todo item.</param>
+        void ToggleTodo(int id);
+
+        /// <summary>
+        /// Remove a Todo item from the list of items
+        /// </summary>
+        /// <param name="id">The id of the Todo item to remove</param>
+        void RemoveTodo(int id);
     }
 }

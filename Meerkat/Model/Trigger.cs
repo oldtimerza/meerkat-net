@@ -1,5 +1,8 @@
 ﻿namespace Meerkat.Model
 {
+    /// <summary>
+    /// The triggers that will cause a state change in the state machine.
+    /// </summary>
     public enum Trigger
     {
         CREATE_TODO,

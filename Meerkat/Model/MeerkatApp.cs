@@ -9,10 +9,10 @@ namespace Meerkat.Model
         private IRepository<Todo> repository;
         private StateMachine<State, Trigger>.TriggerWithParameters<Todo> createTodoTrigger;
 
-        public MeerkatApp(StateMachine<State, Trigger> stateMachine, IRepository<Todo> todoRepository)
+        public MeerkatApp(StateMachine<State, Trigger> stateMachine, IRepository<Todo> repository)
         {
             this.stateMachine = stateMachine;
-            this.repository = todoRepository;
+            this.repository = repository;
             createTodoTrigger = this.stateMachine.SetTriggerParameters<Todo>(Trigger.CREATE_TODO);
             stateMachine.Configure(State.INSERT).Permit(Trigger.EXIT_EDITOR, State.NAVIGATION);
             stateMachine.Configure(State.INSERT).Permit(Trigger.CREATE_TODO, State.NAVIGATION);
