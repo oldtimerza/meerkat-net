@@ -23,7 +23,7 @@ namespace Meerkat.Model
 
         public virtual IReadOnlyCollection<Todo> Todos
         {
-            get { return repository.get().AsReadOnly(); }
+            get { return repository.Get().AsReadOnly(); }
         }
         
         public virtual State CurrentState
@@ -51,7 +51,13 @@ namespace Meerkat.Model
 
         private void AddTodoItem(Todo item)
         {
-            repository.create(item);
+            repository.Create(item);
+        }
+
+        public void ToggleTodo(int index)
+        {
+            Todo todo = repository.Get()[index];
+            repository.Update(index, new Todo(!todo.Done, todo.Message));
         }
     }
 }

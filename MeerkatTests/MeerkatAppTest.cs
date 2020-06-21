@@ -28,7 +28,7 @@ namespace MeerkatTests
         {
             string message = "Some todo message";
             Todo todo = new Todo(false, message);
-            mockRepository.Setup(repository => repository.get()).Returns(new List<Todo> { todo });
+            mockRepository.Setup(repository => repository.Get()).Returns(new List<Todo> { todo });
 
             app.CreateTodo(todo);
 
@@ -56,6 +56,18 @@ namespace MeerkatTests
             app.EnterInsert();
 
             Assert.AreEqual(State.INSERT, app.CurrentState);
+        }
+
+        [TestMethod]
+        public void ShouldToggleTheTodoAtIndex()
+        {
+            int index = 0;
+            Todo todo = new Todo(false, "Some todo");
+            mockRepository.Setup(repository => repository.Get()).Returns(new List<Todo> { todo });
+
+            app.ToggleTodo(index);
+
+            mockRepository.Verify(repository => repository.Update(index, new Todo(true, todo.Message)));
         }
     }
 }

@@ -15,14 +15,25 @@ namespace Meerkat.Model
             todos = new List<Todo>();
         }
 
-        public void create(Todo todo)
+        public void Create(Todo todo)
         {
             todos.Add(todo);
         }
 
-        public List<Todo> get()
+        public List<Todo> Get()
         {
             return todos;
         }
+
+        public Todo Update(int id, Todo t)
+        {
+            Todo todo = todos.ElementAt(id);
+
+            todo.Done = t.Done;
+            todo.Message = t.Message;
+
+            return todo;
+        }
+
     }
 }

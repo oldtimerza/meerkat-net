@@ -26,12 +26,25 @@ namespace MeerkatTests
         {
             Todo todo = new Todo(false, "Some todo message");
 
-            todoRepository.create(todo);
-            List<Todo> todos = todoRepository.get();
+            todoRepository.Create(todo);
+            List<Todo> todos = todoRepository.Get();
 
             Assert.AreEqual(todos.Count, 1);
             Todo onlyTodo = todos[0];
             Assert.AreEqual(todo, onlyTodo);
+        }
+
+        [TestMethod]
+        public void ShouldUpdateTodo()
+        {
+            Todo todo = new Todo(false, "Some todo message");
+            string newMessage = "Some new Message";
+
+            todoRepository.Create(todo);
+            Todo updatedTodo = todoRepository.Update(0, new Todo(true, newMessage));
+
+            Assert.AreEqual(true, updatedTodo.Done);
+            Assert.AreEqual(newMessage, updatedTodo.Message);
         }
     }
 }

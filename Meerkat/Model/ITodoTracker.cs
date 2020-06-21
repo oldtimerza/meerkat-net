@@ -10,5 +10,6 @@ namespace Meerkat.Model
     {
         IReadOnlyCollection<Todo> Todos { get; }
         void CreateTodo(Todo todo);
+        void ToggleTodo(int index);
     }
 }

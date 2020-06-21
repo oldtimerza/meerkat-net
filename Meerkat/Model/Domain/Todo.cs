@@ -18,5 +18,10 @@
         {
             return obj != null && obj is Todo && ((Todo)obj).Done.Equals(Done) && ((Todo)obj).Message.Equals(Message);
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

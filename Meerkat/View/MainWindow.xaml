@@ -50,5 +50,9 @@
             Modifiers="Ctrl"
             Key="K"
             Command="{ Binding PreviousTodoItem }" />
+        <KeyBinding
+            Modifiers="Ctrl"
+            Key="Space"
+            Command="{ Binding ToggleTodo }" />
     </Window.InputBindings>
 </Window>

@@ -8,7 +8,8 @@ namespace Meerkat.Model
 {
     public interface IRepository<T>
     {
-        List<T> get();
-        void create(T t);
+        List<T> Get();
+        void Create(T t);
+        T Update(int id, T t);
     }
 }

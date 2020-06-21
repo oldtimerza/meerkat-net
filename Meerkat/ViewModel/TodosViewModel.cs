@@ -10,13 +10,13 @@ namespace Meerkat.ViewModel
     {
         private IStateTracker stateTracker;
         private ITodoTracker todoTracker;
-        private string insertText;
         private bool focusInsertText;
         private int selectedIndex;
         private ICommand addTodo;
         private ICommand enterInsertMode;
         private ICommand nextTodoItem;
         private ICommand previousTodoItem;
+        private ICommand toggleTodo;
 
         public TodosViewModel(IStateTracker stateTracker, ITodoTracker todoTracker)
         {
@@ -103,6 +103,23 @@ namespace Meerkat.ViewModel
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
                 return previousTodoItem;
+            }
+        }
+        
+        public ICommand ToggleTodo
+        {
+            get
+            {
+                if(toggleTodo == null)
+                {
+                    toggleTodo = new RelayCommand(p =>
+                    {
+                        todoTracker.ToggleTodo(SelectedIndex);
+                        OnPropertyChanged("Todos");
+                    },
+                    p => stateTracker.CurrentState == State.NAVIGATION);
+                }
+                return toggleTodo;
             }
         }
 
