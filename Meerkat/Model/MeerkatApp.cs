@@ -59,5 +59,10 @@ namespace Meerkat.Model
             Todo todo = repository.Get()[index];
             repository.Update(index, new Todo(!todo.Done, todo.Message));
         }
+
+        public void RemoveTodo(int index)
+        {
+            repository.Delete(index);
+        }
     }
 }

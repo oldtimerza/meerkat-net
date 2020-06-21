@@ -89,5 +89,13 @@ namespace MeerkatTests
 
             Assert.AreEqual(2, todosViewModel.SelectedIndex);
         }
+
+        [TestMethod]
+        public void ShouldRemoveTodo()
+        {
+            todosViewModel.RemoveTodo.Execute(null);
+
+            mockTodoTracker.Verify(tracker => tracker.RemoveTodo(todosViewModel.SelectedIndex));
+        }
     }
 }

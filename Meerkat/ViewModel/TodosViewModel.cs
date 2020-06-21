@@ -17,6 +17,7 @@ namespace Meerkat.ViewModel
         private ICommand nextTodoItem;
         private ICommand previousTodoItem;
         private ICommand toggleTodo;
+        private ICommand removeTodo;
 
         public TodosViewModel(IStateTracker stateTracker, ITodoTracker todoTracker)
         {
@@ -120,6 +121,23 @@ namespace Meerkat.ViewModel
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
                 return toggleTodo;
+            }
+        }
+
+        public ICommand RemoveTodo
+        {
+            get
+            {
+                if(removeTodo == null)
+                {
+                    removeTodo = new RelayCommand(p =>
+                    {
+                        todoTracker.RemoveTodo(SelectedIndex);
+                        OnPropertyChanged("Todos");
+                    },
+                    p => stateTracker.CurrentState == State.NAVIGATION);
+                }
+                return removeTodo;
             }
         }
 

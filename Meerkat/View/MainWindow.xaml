@@ -54,5 +54,9 @@
             Modifiers="Ctrl"
             Key="Space"
             Command="{ Binding ToggleTodo }" />
+        <KeyBinding
+            Modifiers="Ctrl"
+            Key="D"
+            Command="{ Binding RemoveTodo }" />
     </Window.InputBindings>
 </Window>

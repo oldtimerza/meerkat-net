@@ -11,5 +11,6 @@ namespace Meerkat.Model
         List<T> Get();
         void Create(T t);
         T Update(int id, T t);
+        void Delete(int id);
     }
 }

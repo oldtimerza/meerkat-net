@@ -69,5 +69,15 @@ namespace MeerkatTests
 
             mockRepository.Verify(repository => repository.Update(index, new Todo(true, todo.Message)));
         }
+
+        [TestMethod]
+        public void ShouldRemoveTodo()
+        {
+            int index = 0;
+
+            app.RemoveTodo(index);
+
+            mockRepository.Verify(repository => repository.Delete(index));
+        }
     }
 }

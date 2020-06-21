@@ -20,6 +20,11 @@ namespace Meerkat.Model
             todos.Add(todo);
         }
 
+        public void Delete(int id)
+        {
+            todos.RemoveAt(id);
+        }
+
         public List<Todo> Get()
         {
             return todos;

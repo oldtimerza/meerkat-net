@@ -14,19 +14,19 @@ namespace MeerkatTests
     {
 
         private TodoRepository todoRepository;
+        private Todo todo;
         
         [TestInitialize]
         public void TestInitialize()
         {
             todoRepository = new TodoRepository();
+            todo = new Todo(false, "Some todo message");
+            todoRepository.Create(todo);
         }
 
         [TestMethod]
         public void ShouldCreateTodo()
         {
-            Todo todo = new Todo(false, "Some todo message");
-
-            todoRepository.Create(todo);
             List<Todo> todos = todoRepository.Get();
 
             Assert.AreEqual(todos.Count, 1);
@@ -37,14 +37,23 @@ namespace MeerkatTests
         [TestMethod]
         public void ShouldUpdateTodo()
         {
-            Todo todo = new Todo(false, "Some todo message");
             string newMessage = "Some new Message";
 
-            todoRepository.Create(todo);
             Todo updatedTodo = todoRepository.Update(0, new Todo(true, newMessage));
 
             Assert.AreEqual(true, updatedTodo.Done);
             Assert.AreEqual(newMessage, updatedTodo.Message);
+        }
+
+        [TestMethod]
+        public void ShouldDeleteTodo()
+        {
+            int index = 0;
+
+            todoRepository.Delete(index);
+            List<Todo> todos = todoRepository.Get();
+
+            Assert.AreEqual(todos.Count, 0);
         }
     }
 }
