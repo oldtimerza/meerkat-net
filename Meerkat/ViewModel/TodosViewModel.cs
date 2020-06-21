@@ -14,6 +14,7 @@ namespace Meerkat.ViewModel
         private int selectedIndex;
         private ICommand addTodo;
         private ICommand enterInsertMode;
+        private ICommand nextTodoItem;
 
         public TodosViewModel(IStateTracker stateTracker, ITodoTracker todoTracker)
         {
@@ -45,7 +46,6 @@ namespace Meerkat.ViewModel
                 {
                     addTodo = new RelayCommand(p => {
                         todoTracker.CreateTodo(new Todo(false, (string)p));
-                        InsertText = "";
                         FocusInsertText = false;
                         OnPropertyChanged("IsInsertMode");
                         OnPropertyChanged("Todos");
@@ -72,17 +72,19 @@ namespace Meerkat.ViewModel
             }
         }
 
-        public string InsertText
+        public ICommand NextTodoItem
         {
             get
             {
-                return insertText;
-            }
-
-            set
-            {
-                insertText = value;
-                OnPropertyChanged("InsertText");
+                if(nextTodoItem == null)
+                {
+                    nextTodoItem = new RelayCommand(p =>
+                    {
+                        SelectedIndex = (SelectedIndex + 1) % todoTracker.Todos.Count;
+                    },
+                    p => stateTracker.CurrentState == State.NAVIGATION);
+                }
+                return nextTodoItem;
             }
         }
 

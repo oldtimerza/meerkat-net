@@ -24,9 +24,9 @@
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Width="753"
+                 GotKeyboardFocus="TextBoxGotKeyboardFocus"
                  Focusable="True"
                  local:FocusExtension.IsFocused="{ Binding FocusInsertText }"
-                 Text="{ Binding InsertText, Mode=TwoWay}"
                  IsEnabled="{ Binding IsInsertMode }">
             <TextBox.InputBindings>
                 <KeyBinding
@@ -40,5 +40,8 @@
         <KeyBinding 
                     Key="I"
                     Command="{Binding EnterInsertMode}" />
+        <KeyBinding 
+                    Key="J"
+                    Command="{Binding NextTodoItem}" />
     </Window.InputBindings>
 </Window>

@@ -49,7 +49,6 @@ namespace MeerkatTests
             todosViewModel.AddTodo.Execute(message);
 
             mockTodoTracker.Verify(tracker => tracker.CreateTodo(new Todo(false, message)));
-            Assert.AreEqual(todosViewModel.InsertText, "");
             Assert.AreEqual(todosViewModel.FocusInsertText, false);
         }
 
@@ -60,6 +59,20 @@ namespace MeerkatTests
 
             mockStateTracker.Verify(app => app.EnterInsert());
             Assert.AreEqual(todosViewModel.FocusInsertText, true);
+        }
+
+        [TestMethod]
+        public void ShouldSelectNextIndex()
+        {
+            List<Todo> todos = new List<Todo>();
+            todos.Add(new Todo(false, "doesnt matter"));
+            todos.Add(new Todo(false,"doesnt matter 2: electric boogaloo"));
+            mockTodoTracker.Setup(tracker => tracker.Todos).Returns(todos.AsReadOnly);
+            int currentIndex = todosViewModel.SelectedIndex;
+
+            todosViewModel.NextTodoItem.Execute(null);
+
+            Assert.AreEqual(currentIndex + 1, todosViewModel.SelectedIndex);
         }
     }
 }
