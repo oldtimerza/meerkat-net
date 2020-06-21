@@ -47,7 +47,8 @@ namespace Meerkat.ViewModel
             {
                 if(addTodo == null)
                 {
-                    addTodo = new RelayCommand(p => {
+                    addTodo = new RelayCommand(p => 
+                    {
                         todoTracker.CreateTodo(new Todo(false, (string)p));
                         FocusInsertText = false;
                         OnPropertyChanged("IsInsertMode");
@@ -64,7 +65,8 @@ namespace Meerkat.ViewModel
             {
                 if(enterInsertMode == null)
                 {
-                    enterInsertMode = new RelayCommand(p => {
+                    enterInsertMode = new RelayCommand(p => 
+                    {
                         stateTracker.EnterInsert();
                         FocusInsertText = true;
                         OnPropertyChanged("IsInsertMode");

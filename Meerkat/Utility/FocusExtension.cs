@@ -29,7 +29,7 @@ namespace Meerkat.Utility
             var uie = (UIElement)d;
             if ((bool)e.NewValue)
             {
-                //This is an ugly solution for gett keyboard focus, but it works for now.
+                //This is an ugly solution for getting keyboard focus, but it works for now.
                 Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Input,
                     new Action(delegate ()
                     {

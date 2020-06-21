@@ -6,9 +6,6 @@ using Meerkat.Model;
 
 namespace MeerkatTests
 {
-    /// <summary>
-    /// Summary description for TodoRepositoryTest
-    /// </summary>
     [TestClass]
     public class TodoRepositoryTest
     {
