@@ -8,7 +8,7 @@ A simple keyboard driven, VIM-styled todo manager.
 
     Alt+Space - Show/Hide Meerkat
 
-    ### In Navigation mode(default):
+### In Navigation mode(default):
 
     Ctrl+j - select next todo in list
 
