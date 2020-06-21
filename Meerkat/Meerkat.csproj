@@ -67,7 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -75,25 +75,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\IStateTracker.cs" />
-    <Compile Include="Model\ITodoTracker.cs" />
-    <Compile Include="Model\Repository\IRepository.cs" />
-    <Compile Include="Model\Domain\Todo.cs" />
-    <Compile Include="Model\Repository\TodoRepository.cs" />
-    <Compile Include="Utility\FocusExtension.cs" />
-    <Compile Include="Utility\Math.cs" />
-    <Compile Include="ViewModel\RelayCommand.cs" />
-    <Compile Include="ViewModel\TodosViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="Models\IStateTracker.cs" />
+    <Compile Include="Models\ITodoTracker.cs" />
+    <Compile Include="Models\Repositories\IRepository.cs" />
+    <Compile Include="Models\Domain\Todo.cs" />
+    <Compile Include="Models\Repositories\TodoRepository.cs" />
+    <Compile Include="Views\AttachedProperties\FocusExtension.cs" />
+    <Compile Include="Utilities\Math.cs" />
+    <Compile Include="ViewModels\Commands\RelayCommand.cs" />
+    <Compile Include="ViewModels\TodosViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Trigger.cs" />
-    <Compile Include="Model\MeerkatApp.cs" />
-    <Compile Include="Model\State.cs" />
+    <Compile Include="Models\Trigger.cs" />
+    <Compile Include="Models\MeerkatApp.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Meerkat.ViewModel;
-using Meerkat.Model;
+using Meerkat.ViewModels;
+using Meerkat.Models;
 using Moq;
 
 namespace MeerkatTests

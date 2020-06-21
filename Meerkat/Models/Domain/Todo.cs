@@ -1,4 +1,4 @@
-﻿namespace Meerkat.Model
+﻿namespace Meerkat.Models
 {
     /// <summary>
     /// Represents a basic todo item with a done state and message

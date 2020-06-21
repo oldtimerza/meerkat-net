@@ -1,6 +1,6 @@
-﻿using Meerkat.Model;
-using Meerkat.View;
-using Meerkat.ViewModel;
+﻿using Meerkat.Models;
+using Meerkat.Views;
+using Meerkat.ViewModels;
 using Ninject;
 using Stateless;
 using System.Windows;
@@ -27,7 +27,7 @@ namespace Meerkat
         {
             container = new StandardKernel();
             container.Bind<IRepository<Todo>>().To<TodoRepository>();
-            container.Bind<StateMachine<State, Model.Trigger>>().ToMethod<StateMachine<State, Model.Trigger>>(context => new StateMachine<State, Model.Trigger>(State.NAVIGATION));
+            container.Bind<StateMachine<State, Models.Trigger>>().ToMethod<StateMachine<State, Models.Trigger>>(context => new StateMachine<State, Models.Trigger>(State.NAVIGATION));
             container.Bind<IStateTracker, ITodoTracker>().To<MeerkatApp>().InSingletonScope();
             container.Bind<ViewModelBase>().To<TodosViewModel>();
         }

@@ -1,10 +1,10 @@
-﻿using Meerkat.Model;
-using Meerkat.Utility;
-using Meerkat.ViewModel.Command;
+﻿using Meerkat.Models;
+using Meerkat.Utilities;
+using Meerkat.ViewModels.Commands;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace Meerkat.ViewModel
+namespace Meerkat.ViewModels
 {
     public class TodosViewModel : ViewModelBase
     {

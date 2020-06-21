@@ -1,4 +1,4 @@
-﻿namespace Meerkat.Model
+﻿namespace Meerkat.Models
 {
     /// <summary>
     /// Tracks the state of a state machine for VIM style state changes 

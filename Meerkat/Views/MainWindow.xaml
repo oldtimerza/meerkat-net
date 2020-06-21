@@ -1,10 +1,9 @@
-﻿<Window x:Class="Meerkat.View.MainWindow"
+﻿<Window x:Class="Meerkat.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Meerkat"
-        xmlns:utility="clr-namespace:Meerkat.Utility"
+        xmlns:ap="clr-namespace:Meerkat.Views.AttachedProperties"
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
@@ -27,7 +26,7 @@
                  Width="753"
                  GotKeyboardFocus="TextBoxGotKeyboardFocus"
                  Focusable="True"
-                 utility:FocusExtension.IsFocused="{ Binding FocusInsertText }"
+                 ap:FocusExtension.IsFocused="{ Binding FocusInsertText }"
                  IsEnabled="{ Binding IsInsertMode }">
             <TextBox.InputBindings>
                 <KeyBinding

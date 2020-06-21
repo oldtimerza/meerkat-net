@@ -2,7 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Meerkat.Model;
+using Meerkat.Models;
 
 namespace MeerkatTests
 {

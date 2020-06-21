@@ -1,4 +1,4 @@
-﻿namespace Meerkat.Model
+﻿namespace Meerkat.Models
 {
     /// <summary>
     /// The states that the state machine can be changed to for our state tracker.

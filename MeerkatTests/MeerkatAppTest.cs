@@ -1,4 +1,4 @@
-﻿using Meerkat.Model;
+﻿using Meerkat.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Stateless;

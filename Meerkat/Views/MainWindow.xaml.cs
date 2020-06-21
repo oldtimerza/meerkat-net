@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Meerkat.View
+namespace Meerkat.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

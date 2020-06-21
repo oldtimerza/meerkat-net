@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace Meerkat.Utility
+namespace Meerkat.Views.AttachedProperties
 {
     public static class FocusExtension
     {

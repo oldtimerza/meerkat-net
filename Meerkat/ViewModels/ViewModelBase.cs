@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace Meerkat.ViewModel
+namespace Meerkat.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

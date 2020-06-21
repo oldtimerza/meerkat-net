@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Meerkat.Model
+namespace Meerkat.Models
 {
     /// <summary>
     /// Keeps track of a Todo instances and manipulating their done state

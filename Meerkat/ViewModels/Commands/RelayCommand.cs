@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Meerkat.ViewModel.Command
+namespace Meerkat.ViewModels.Commands
 {
     public class RelayCommand : ICommand    
     {    

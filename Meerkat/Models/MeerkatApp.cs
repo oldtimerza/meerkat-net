@@ -1,7 +1,7 @@
 ﻿using Stateless;
 using System.Collections.Generic;
 
-namespace Meerkat.Model
+namespace Meerkat.Models
 {
     public class MeerkatApp : IStateTracker, ITodoTracker
     {

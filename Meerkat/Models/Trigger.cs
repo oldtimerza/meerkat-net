@@ -1,4 +1,4 @@
-﻿namespace Meerkat.Model
+﻿namespace Meerkat.Models
 {
     /// <summary>
     /// The triggers that will cause a state change in the state machine.

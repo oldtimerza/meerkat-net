@@ -1,4 +1,4 @@
-﻿namespace Meerkat.Utility
+﻿namespace Meerkat.Utilities
 {
     public class Math
     {
