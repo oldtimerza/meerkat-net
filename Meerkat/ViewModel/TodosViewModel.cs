@@ -1,4 +1,5 @@
 ﻿using Meerkat.Model;
+using Meerkat.Utility;
 using Meerkat.ViewModel.Command;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -15,6 +16,7 @@ namespace Meerkat.ViewModel
         private ICommand addTodo;
         private ICommand enterInsertMode;
         private ICommand nextTodoItem;
+        private ICommand previousTodoItem;
 
         public TodosViewModel(IStateTracker stateTracker, ITodoTracker todoTracker)
         {
@@ -80,11 +82,27 @@ namespace Meerkat.ViewModel
                 {
                     nextTodoItem = new RelayCommand(p =>
                     {
-                        SelectedIndex = (SelectedIndex + 1) % todoTracker.Todos.Count;
+                        SelectedIndex = Math.Mod(SelectedIndex + 1, todoTracker.Todos.Count);
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
                 return nextTodoItem;
+            }
+        }
+
+        public ICommand PreviousTodoItem
+        {
+            get
+            {
+                if(previousTodoItem == null)
+                {
+                    previousTodoItem = new RelayCommand(p =>
+                    {
+                        SelectedIndex = Math.Mod(SelectedIndex - 1, todoTracker.Todos.Count);
+                    },
+                    p => stateTracker.CurrentState == State.NAVIGATION);
+                }
+                return previousTodoItem;
             }
         }
 

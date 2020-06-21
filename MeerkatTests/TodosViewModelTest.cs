@@ -74,5 +74,20 @@ namespace MeerkatTests
 
             Assert.AreEqual(currentIndex + 1, todosViewModel.SelectedIndex);
         }
+
+        [TestMethod]
+        public void ShouldSelectPreviousIndexWithWrap()
+        {
+            List<Todo> todos = new List<Todo>();
+            todos.Add(new Todo(false, "doesnt matter"));
+            todos.Add(new Todo(false,"doesnt matter 2: electric boogaloo"));
+            todos.Add(new Todo(false,"doesnt matter 3: revenge of the matters"));
+            mockTodoTracker.Setup(tracker => tracker.Todos).Returns(todos.AsReadOnly);
+            int currentIndex = todosViewModel.SelectedIndex;
+
+            todosViewModel.PreviousTodoItem.Execute(null);
+
+            Assert.AreEqual(2, todosViewModel.SelectedIndex);
+        }
     }
 }

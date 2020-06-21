@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Meerkat"
+        xmlns:utility="clr-namespace:Meerkat.Utility"
         mc:Ignorable="d"
         Height="450" Width="800">
     <Grid>
@@ -26,7 +27,7 @@
                  Width="753"
                  GotKeyboardFocus="TextBoxGotKeyboardFocus"
                  Focusable="True"
-                 local:FocusExtension.IsFocused="{ Binding FocusInsertText }"
+                 utility:FocusExtension.IsFocused="{ Binding FocusInsertText }"
                  IsEnabled="{ Binding IsInsertMode }">
             <TextBox.InputBindings>
                 <KeyBinding
@@ -38,10 +39,16 @@
     </Grid>
     <Window.InputBindings>
         <KeyBinding 
-                    Key="I"
-                    Command="{Binding EnterInsertMode}" />
+            Modifiers="Ctrl"
+            Key="I"
+            Command="{ Binding EnterInsertMode }" />
         <KeyBinding 
-                    Key="J"
-                    Command="{Binding NextTodoItem}" />
+            Modifiers="Ctrl"
+            Key="J"
+            Command="{ Binding NextTodoItem }" />
+        <KeyBinding
+            Modifiers="Ctrl"
+            Key="K"
+            Command="{ Binding PreviousTodoItem }" />
     </Window.InputBindings>
 </Window>

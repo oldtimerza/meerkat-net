@@ -74,7 +74,8 @@
     <Compile Include="Model\Repository\IRepository.cs" />
     <Compile Include="Model\Domain\Todo.cs" />
     <Compile Include="Model\Repository\TodoRepository.cs" />
-    <Compile Include="FocusExtension.cs" />
+    <Compile Include="Utility\FocusExtension.cs" />
+    <Compile Include="Utility\Math.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\TodosViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
