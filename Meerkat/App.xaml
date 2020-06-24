@@ -4,6 +4,32 @@
              xmlns:local="clr-namespace:Meerkat"
              >
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="MainDark" Color="#555555" />
+        <SolidColorBrush x:Key="FontLight" Color="GhostWhite" />
+        <Style x:Key="MainWindow" TargetType="{x:Type Window}">
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MinHeight" Value="46"/>
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Height" Value="450"/>
+            <Setter Property="Background" Value="{StaticResource MainDark}"/>
+        </Style>
+        <Style x:Key="InputBox" TargetType="{x:Type TextBox}">
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="{StaticResource FontLight}"/>
+            <Setter Property="Background" Value="{StaticResource MainDark}"/>
+        </Style>
+        <Style x:Key="TodoList" TargetType="{x:Type ListBox}">
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Height" Value="350"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Foreground" Value="{StaticResource FontLight}"/>
+            <Setter Property="Background" Value="{StaticResource MainDark}"/>
+        </Style>
     </Application.Resources>
 </Application>
