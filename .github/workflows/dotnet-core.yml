@@ -41,7 +41,7 @@ jobs:
         with:
           dotnet-version: 3.1.101
       - name: Get into Meerkat
-      - run: cd Meerkat
+        run: cd Meerkat
       - name: Publish
         run: dotnet publish -c release -o ./bin/Release/meerkat --self-contained false
       - name: Upload binaries to release
