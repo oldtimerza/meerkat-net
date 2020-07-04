@@ -24,8 +24,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: bin/Release/Meerkat/Meerkat.exe
-          asset_name: Meerkat
+          file: bin/Release/Meerkat
+          asset_name: Meerkat.exe
           tag: ${{ github.ref }}
           overwrite: true
           body: "Latest release of Meerkat"
