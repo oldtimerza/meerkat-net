@@ -20,12 +20,12 @@
                     CommandParameter="{ Binding Text, ElementName=TodoMessageText}" />
             </TextBox.InputBindings>
         </TextBox>
-        <ListBox Style="{StaticResource TodoList}" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
+        <ListBox Style="{StaticResource TodoList }" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{ Binding Done }"/>
-                        <TextBlock Text="{ Binding Message }" />
+                        <CheckBox Style="{ StaticResource TodoListItemCheckbox }" IsChecked="{ Binding Done }"/>
+                        <TextBlock Style="{ StaticResource TodoListItemDescription }" Text="{ Binding Message }" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

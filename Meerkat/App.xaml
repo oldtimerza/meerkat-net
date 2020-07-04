@@ -18,10 +18,10 @@
             <Setter Property="Width" Value="800"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Foreground" Value="{StaticResource FontLight}"/>
             <Setter Property="Background" Value="{StaticResource MainDark}"/>
+            <Setter Property="FontSize" Value="25"/>
         </Style>
         <Style x:Key="TodoList" TargetType="{x:Type ListBox}">
             <Setter Property="MinWidth" Value="100"/>
@@ -29,6 +29,50 @@
             <Setter Property="Height" Value="350"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Foreground" Value="{StaticResource FontLight}"/>
+            <Setter Property="Background" Value="{StaticResource MainDark}"/>
+        </Style>
+        <Style x:Key="TodoListItemDescription" TargetType="{x:Type TextBlock}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="MinWidth" Value="75"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="TodoListItemCheckbox" TargetType="{x:Type CheckBox}">
+            <Setter Property="Cursor" Value="Hand"></Setter>
+            <Setter Property="Content" Value=""></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <Rectangle x:Name="highlightCircle" >
+                                <Rectangle.Fill >
+                                    <SolidColorBrush Color="Blue"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="highlightCircle" Property="Fill">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="Green"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="highlightCircle" Property="Fill">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="Red"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MinWidth" Value="25"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="{StaticResource MainDark}"/>
         </Style>
     </Application.Resources>
