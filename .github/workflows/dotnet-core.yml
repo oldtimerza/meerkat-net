@@ -46,16 +46,16 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.101
-    - name: Get into Meerkat
-    - run: cd Meerkat
-    - name: Publish
-      run: dotnet publish -c release -o ./bin/Release/meerkat --self-contained false
-    - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: bin/Release/Meerkat/Meerkat.exe
-        asset_name: Meerkat
-        tag: ${{ github.ref }}
-        overwrite: true
-        body: "Latest release of Meerkat"
+      - name: Get into Meerkat
+      - run: cd Meerkat
+      - name: Publish
+        run: dotnet publish -c release -o ./bin/Release/meerkat --self-contained false
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: bin/Release/Meerkat/Meerkat.exe
+          asset_name: Meerkat
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "Latest release of Meerkat"
