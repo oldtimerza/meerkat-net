@@ -2,12 +2,12 @@
 
 # Meerkat-net
 
-![Meerkat](https://oldtimerza.github.io/meerkat-site/)
+[Meerkat](https://oldtimerza.github.io/meerkat-site/)
 
 A simple keyboard driven, VIM-styled todo manager. This is very similar to the Meerkat project I have previously worked on, that version used electron js which I had issues with and decided to make the switch to .Net to save on size.
 
 ## Requirements:
-This application requires ![.Net Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+This application requires [.Net Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 ## Keyboard shortcuts:
 
