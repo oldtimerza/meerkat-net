@@ -45,7 +45,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.1012
+          dotnet-version: 3.1.101
     - name: Get into Meerkat
     - run: cd Meerkat
     - name: Publish
