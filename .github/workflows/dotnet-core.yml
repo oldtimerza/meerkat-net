@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build, Test
+    name: Build and Test
     runs-on: windows-latest
 
     steps:
@@ -23,11 +23,6 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Test
         run: dotnet test --no-restore --verbosity normal
-  publish:
-    runs-on: windows-latest
-
-    steps:
-      - uses
 
 on:
   push:
@@ -46,7 +41,7 @@ jobs:
         with:
           dotnet-version: 3.1.101
       - name: Get into Meerkat
-        run: cd Meerkat
+      - run: cd Meerkat
       - name: Publish
         run: dotnet publish -c release -o ./bin/Release/meerkat --self-contained false
       - name: Upload binaries to release
