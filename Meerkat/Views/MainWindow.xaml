@@ -6,12 +6,16 @@
     xmlns:ap="clr-namespace:Meerkat.Views.AttachedProperties"
     mc:Ignorable="d"
     Style="{StaticResource ResourceKey=MainWindow}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
     <Grid>
         <TextBox x:Name="TodoMessageText"
                  Style="{StaticResource InputBox}"
                  GotKeyboardFocus="TextBoxGotKeyboardFocus"
                  Focusable="True"
                  ap:FocusExtension.IsFocused="{ Binding FocusInsertText }"
+                 Visibility="{Binding Path=IsInsertMode, Converter={StaticResource BoolToVis}}"
                  IsEnabled="{ Binding IsInsertMode }">
             <TextBox.InputBindings>
                 <KeyBinding
