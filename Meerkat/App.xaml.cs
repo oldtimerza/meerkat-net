@@ -34,10 +34,10 @@ namespace Meerkat
 
         private void ComposeObjects()
         {
-            ViewModelBase viewModel = container.Get<ViewModelBase>();
-            Current.MainWindow = this.container.Get<MainWindow>();
+            ViewModelBase todosViewModel = container.Get<ViewModelBase>();
+            Current.MainWindow = container.Get<MainWindow>();
             Current.MainWindow.Title = "Meerkat";
-            Current.MainWindow.DataContext = viewModel;
+            Current.MainWindow.DataContext = todosViewModel;
         }
     }
 }

@@ -23,7 +23,7 @@
         <ListBox Style="{StaticResource TodoList }" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Style="{StaticResource TodoItem}">
                         <CheckBox Style="{ StaticResource TodoListItemCheckbox }" IsChecked="{ Binding Done }"/>
                         <TextBlock Style="{ StaticResource TodoListItemDescription }" Text="{ Binding Message }" />
                     </StackPanel>
