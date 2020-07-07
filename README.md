@@ -1,6 +1,7 @@
 ![Meerkat](https://raw.githubusercontent.com/oldtimerza/meerkat/master/logo.png)
 
 # Meerkat-net
+![.NET Core](https://github.com/oldtimerza/meerkat-net/workflows/.NET%20Core/badge.svg)
 
 [Meerkat](https://oldtimerza.github.io/meerkat-site/)
 
