@@ -18,15 +18,17 @@
         <Style x:Key="InputBox" TargetType="{x:Type TextBox}">
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="Width" Value="800"/>
-            <Setter Property="Height" Value="40"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="ProgressBar" TargetType="{x:Type ProgressBar}">
+            <Setter Property="Foreground" Value="{ StaticResource CompleteGreen}"/>
+            <Setter Property="Background" Value="{ StaticResource IncompleteRed}"/>
         </Style>
         <Style x:Key="TodoList" TargetType="{x:Type ListBox}">
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="Width" Value="800"/>
-            <Setter Property="Height" Value="350"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Foreground" Value="{StaticResource FontLight}"/>
             <Setter Property="Background" Value="{StaticResource MainDark}"/>

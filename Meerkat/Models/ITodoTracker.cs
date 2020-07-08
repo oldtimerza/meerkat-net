@@ -13,6 +13,11 @@ namespace Meerkat.Models
         IReadOnlyCollection<Todo> Todos { get; }
 
         /// <summary>
+        /// The ratio of done todos of the total todo list
+        /// </summary>
+        double Progress { get; }
+
+        /// <summary>
         /// Create a new Todo item in the list
         /// </summary>
         /// <param name="todo">The new Todo item</param>

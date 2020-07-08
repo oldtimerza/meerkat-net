@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Stateless;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -78,6 +77,19 @@ namespace MeerkatTests
             app.RemoveTodo(index);
 
             mockRepository.Verify(repository => repository.Delete(index));
+        }
+
+        [TestMethod]
+        public void ShouldUpdateProgress()
+        {
+            Todo doneTodo = new Todo(true, "Done todo");
+            Todo notDoneTodo = new Todo(false, "Not done todo");
+            mockRepository.Setup(repository => repository.Get()).Returns(new List<Todo> { doneTodo, notDoneTodo });
+
+            app.ToggleTodo(0);
+
+            double halfComplete = 0.5;
+            Assert.AreEqual(halfComplete, app.Progress);
         }
     }
 }

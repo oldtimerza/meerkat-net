@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Linq;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Meerkat.Models;
@@ -24,10 +23,10 @@ namespace MeerkatTests
         [TestMethod]
         public void ShouldCreateTodo()
         {
-            List<Todo> todos = todoRepository.Get();
+            IEnumerable<Todo> todos = todoRepository.Get();
 
-            Assert.AreEqual(todos.Count, 1);
-            Todo onlyTodo = todos[0];
+            Assert.AreEqual(todos.Count(), 1);
+            Todo onlyTodo = todos.ElementAt(0);
             Assert.AreEqual(todo, onlyTodo);
         }
 
@@ -48,9 +47,9 @@ namespace MeerkatTests
             int index = 0;
 
             todoRepository.Delete(index);
-            List<Todo> todos = todoRepository.Get();
+            IEnumerable<Todo> todos = todoRepository.Get();
 
-            Assert.AreEqual(todos.Count, 0);
+            Assert.AreEqual(todos.Count(), 0);
         }
     }
 }
