@@ -1,5 +1,6 @@
 ﻿using Stateless;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Meerkat.Models
 {
@@ -8,6 +9,7 @@ namespace Meerkat.Models
         private StateMachine<State, Trigger> stateMachine;
         private IRepository<Todo> repository;
         private StateMachine<State, Trigger>.TriggerWithParameters<Todo> createTodoTrigger;
+        private double progress;
 
         public MeerkatApp(StateMachine<State, Trigger> stateMachine, IRepository<Todo> repository)
         {
@@ -23,7 +25,7 @@ namespace Meerkat.Models
 
         public virtual IReadOnlyCollection<Todo> Todos
         {
-            get { return repository.Get().AsReadOnly(); }
+            get { return  repository.Get().ToList<Todo>().AsReadOnly(); }
         }
         
         public virtual State CurrentState
@@ -31,6 +33,14 @@ namespace Meerkat.Models
             get
             {
                 return stateMachine.State;
+            }
+        }
+
+        public virtual double Progress
+        {
+            get
+            {
+                return this.progress;
             }
         }
 
@@ -52,17 +62,27 @@ namespace Meerkat.Models
         private void AddTodoItem(Todo item)
         {
             repository.Create(item);
+            UpdateProgress();
         }
 
         public void ToggleTodo(int index)
         {
-            Todo todo = repository.Get()[index];
+            Todo todo = repository.Get().ElementAt(index);
             repository.Update(index, new Todo(!todo.Done, todo.Message));
+            UpdateProgress();
         }
 
         public void RemoveTodo(int index)
         {
             repository.Delete(index);
+            UpdateProgress();
+        }
+
+        private void UpdateProgress()
+        {
+            double doneTodosCount = repository.Get().Count(todo => todo.Done);
+            double totalCount = repository.Get().Count();
+            progress = doneTodosCount / totalCount;
         }
     }
 }

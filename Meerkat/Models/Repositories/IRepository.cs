@@ -8,7 +8,7 @@ namespace Meerkat.Models
         /// Get a list of all objects
         /// </summary>
         /// <returns>List of objects</returns>
-        List<T> Get();
+        IEnumerable<T> Get();
 
         /// <summary>
         /// Create a new object

@@ -22,7 +22,7 @@ namespace Meerkat.Models
             todos.RemoveAt(id);
         }
 
-        public List<Todo> Get()
+        public IEnumerable<Todo> Get()
         {
             return todos;
         }

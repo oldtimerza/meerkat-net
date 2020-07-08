@@ -42,6 +42,14 @@ namespace Meerkat.ViewModels
             }
         }
 
+        public double Progress
+        {
+            get
+            {
+                return todoTracker.Progress;
+            }
+        }
+
         public ICommand AddTodo {
             get
             {
@@ -53,6 +61,8 @@ namespace Meerkat.ViewModels
                         FocusInsertText = false;
                         OnPropertyChanged("IsInsertMode");
                         OnPropertyChanged("Todos");
+                        OnPropertyChanged("Progress");
+
                     },
                     p => stateTracker.CurrentState == State.INSERT);
                 }
@@ -119,6 +129,7 @@ namespace Meerkat.ViewModels
                     {
                         todoTracker.ToggleTodo(SelectedIndex);
                         OnPropertyChanged("Todos");
+                        OnPropertyChanged("Progress");
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
@@ -136,6 +147,7 @@ namespace Meerkat.ViewModels
                     {
                         todoTracker.RemoveTodo(SelectedIndex);
                         OnPropertyChanged("Todos");
+                        OnPropertyChanged("Progress");
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }

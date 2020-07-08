@@ -10,7 +10,13 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
         <TextBox x:Name="TodoMessageText"
+                 Grid.Row="0"
                  Style="{StaticResource InputBox}"
                  GotKeyboardFocus="TextBoxGotKeyboardFocus"
                  Focusable="True"
@@ -24,7 +30,8 @@
                     CommandParameter="{ Binding Text, ElementName=TodoMessageText}" />
             </TextBox.InputBindings>
         </TextBox>
-        <ListBox Style="{StaticResource TodoList }" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
+        <ProgressBar Grid.Row="1" Style="{ StaticResource ProgressBar }" Minimum="0" Maximum="1" Value="{ Binding Progress, Mode=OneWay}" />
+        <ListBox Grid.Row="2" Style="{StaticResource TodoList }" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Style="{StaticResource TodoItem}">

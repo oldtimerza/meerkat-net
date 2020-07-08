@@ -97,5 +97,16 @@ namespace MeerkatTests
 
             mockTodoTracker.Verify(tracker => tracker.RemoveTodo(todosViewModel.SelectedIndex));
         }
+
+        [TestMethod]
+        public void ShouldHaveProgress()
+        {
+            double progress = 0.5;
+            mockTodoTracker.Setup(tracker => tracker.Progress).Returns(progress);
+
+            double actualProgress = todosViewModel.Progress;
+
+            Assert.AreEqual(progress, actualProgress);
+        }
     }
 }
