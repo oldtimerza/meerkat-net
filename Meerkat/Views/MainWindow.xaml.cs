@@ -14,8 +14,9 @@ namespace Meerkat.Views
     {
         public MainWindow()
         {
-            HotkeyManager.Current.AddOrReplace("ShowHideWindow", Key.Space, ModifierKeys.Alt, ShowHide);
             InitializeComponent();
+            HotkeyManager.Current.AddOrReplace("ShowHideWindow", Key.Space, ModifierKeys.Alt, ShowHide);
+            Topmost = true;
         }
 
         public void ShowHide(object sender, EventArgs e)
@@ -23,6 +24,7 @@ namespace Meerkat.Views
             if(WindowState == WindowState.Minimized)
             {
                 WindowState = WindowState.Normal;
+                Activate();
                 return;
             }
             WindowState = WindowState.Minimized;
