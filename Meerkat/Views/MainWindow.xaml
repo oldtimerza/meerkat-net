@@ -22,7 +22,7 @@
                  Focusable="True"
                  ap:FocusExtension.IsFocused="{ Binding FocusInsertText }"
                  Visibility="{Binding Path=IsInsertMode, Converter={StaticResource BoolToVis}}"
-                 IsEnabled="{ Binding IsInsertMode }">
+                 IsEnabled="{ Binding IsInsertMode }" PreviewKeyDown="TodoMessageText_PreviewKeyDown">
             <TextBox.InputBindings>
                 <KeyBinding
                     Key="Return"
@@ -44,23 +44,18 @@
     </Grid>
     <Window.InputBindings>
         <KeyBinding 
-            Modifiers="Ctrl"
             Key="I"
             Command="{ Binding EnterInsertMode }" />
         <KeyBinding 
-            Modifiers="Ctrl"
             Key="J"
             Command="{ Binding NextTodoItem }" />
         <KeyBinding
-            Modifiers="Ctrl"
             Key="K"
             Command="{ Binding PreviousTodoItem }" />
         <KeyBinding
-            Modifiers="Ctrl"
             Key="Space"
             Command="{ Binding ToggleTodo }" />
         <KeyBinding
-            Modifiers="Ctrl"
             Key="D"
             Command="{ Binding RemoveTodo }" />
     </Window.InputBindings>

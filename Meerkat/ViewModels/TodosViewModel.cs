@@ -1,5 +1,4 @@
 ﻿using Meerkat.Models;
-using Meerkat.Utilities;
 using Meerkat.ViewModels.Commands;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -95,7 +94,7 @@ namespace Meerkat.ViewModels
                 {
                     nextTodoItem = new RelayCommand(p =>
                     {
-                        SelectedIndex = Math.Mod(SelectedIndex + 1, todoTracker.Todos.Count);
+                        SelectedIndex = Utilities.Math.Mod(SelectedIndex + 1, todoTracker.Todos.Count);
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
@@ -111,7 +110,7 @@ namespace Meerkat.ViewModels
                 {
                     previousTodoItem = new RelayCommand(p =>
                     {
-                        SelectedIndex = Math.Mod(SelectedIndex - 1, todoTracker.Todos.Count);
+                        SelectedIndex = Utilities.Math.Mod(SelectedIndex - 1, todoTracker.Todos.Count);
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
