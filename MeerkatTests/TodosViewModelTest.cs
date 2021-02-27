@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Meerkat.ViewModels;
 using Meerkat.Models;
 using Moq;
+using System.Windows.Threading;
 
 namespace MeerkatTests
 {
@@ -12,13 +13,15 @@ namespace MeerkatTests
         private MeerkatAppViewModel todosViewModel;
         private Mock<IStateTracker> mockStateTracker;
         private Mock<ITodoTracker> mockTodoTracker;
+        private Mock<DispatcherTimer> mockDispatcher;
 
         [TestInitialize]
         public void TestInitialize()
         {
             mockStateTracker = new Mock<IStateTracker>();
             mockTodoTracker = new Mock<ITodoTracker>();
-            todosViewModel = new MeerkatAppViewModel(mockStateTracker.Object, mockTodoTracker.Object);
+            mockDispatcher = new Mock<DispatcherTimer>();
+            todosViewModel = new MeerkatAppViewModel(mockStateTracker.Object, mockTodoTracker.Object, mockDispatcher.Object);
         }
 
         [TestMethod]

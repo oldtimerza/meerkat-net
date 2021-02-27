@@ -17,10 +17,9 @@ namespace Meerkat.Models
 
         public MeerkatApp(StateMachine<State, Trigger> stateMachine, IRepository<Todo> repository, DispatcherTimer dispatcherTimer)
         {
-            this.todos = new List<Todo>();
             this.repository = repository;
+            this.todos = this.repository.Get().ToList();
 
-            //setup statemachine
             this.stateMachine = stateMachine;
             createTodoTrigger = this.stateMachine.SetTriggerParameters<Todo>(Trigger.CREATE_TODO);
             stateMachine.Configure(State.INSERT).Permit(Trigger.EXIT_EDITOR, State.NAVIGATION);
@@ -29,7 +28,6 @@ namespace Meerkat.Models
                 .OnEntryFrom(createTodoTrigger, todo => AddTodoItem(todo))
                 .Permit(Trigger.ENTER_EDITOR, State.INSERT);
 
-            //setup dispatcher 
             dispatcherTimer.Tick += new EventHandler(Tick);
         }
 
