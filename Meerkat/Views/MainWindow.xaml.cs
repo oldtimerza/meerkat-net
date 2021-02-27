@@ -48,7 +48,8 @@ namespace Meerkat.Views
                 new Tuple<Key, string>( Key.I, "i" ),
                 new Tuple<Key, string>( Key.J, "j" ), 
                 new Tuple<Key, string>( Key.K, "k" ),
-                new Tuple<Key, string>( Key.D, "d" ) 
+                new Tuple<Key, string>( Key.D, "d" ), 
+                new Tuple<Key, string>( Key.S, "s")
             };
             if(!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
             {

@@ -9,7 +9,7 @@ namespace MeerkatTests
     [TestClass]
     public class TodosViewModelTest
     {
-        private TodosViewModel todosViewModel;
+        private MeerkatAppViewModel todosViewModel;
         private Mock<IStateTracker> mockStateTracker;
         private Mock<ITodoTracker> mockTodoTracker;
 
@@ -18,7 +18,7 @@ namespace MeerkatTests
         {
             mockStateTracker = new Mock<IStateTracker>();
             mockTodoTracker = new Mock<ITodoTracker>();
-            todosViewModel = new TodosViewModel(mockStateTracker.Object, mockTodoTracker.Object);
+            todosViewModel = new MeerkatAppViewModel(mockStateTracker.Object, mockTodoTracker.Object);
         }
 
         [TestMethod]

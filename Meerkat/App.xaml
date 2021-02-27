@@ -8,6 +8,7 @@
         <SolidColorBrush x:Key="FontLight" Color="GhostWhite" />
         <SolidColorBrush x:Key="CompleteGreen" Color="#19F9D8" />
         <SolidColorBrush x:Key="IncompleteRed" Color="#FF2C6D" />
+        <SolidColorBrush x:Key="ActiveOrange" Color="#EDBC34"/>
         <Style x:Key="MainWindow" TargetType="{x:Type Window}">
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="MinHeight" Value="46"/>
@@ -40,7 +41,7 @@
             <Setter Property="Padding" Value="30, 0, 0, 0"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="MinWidth" Value="75"/>
-            <Setter Property="Width" Value="600"/>
+            <Setter Property="Width" Value="450"/>
             <Setter Property="FontSize" Value="25"/>
         </Style>
         <Style x:Key="TodoListItemCheckbox" TargetType="{x:Type CheckBox}">
@@ -70,6 +71,18 @@
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="{StaticResource MainDark}"/>
+        </Style>
+        <Style x:Key="TodoListItemTime" TargetType="{x:Type TextBlock}">
+            <Setter Property="Padding" Value="30, 0, 0, 0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="MinWidth" Value="75"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Active}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource ActiveOrange}"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>
