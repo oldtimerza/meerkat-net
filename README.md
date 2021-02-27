@@ -6,7 +6,11 @@
 
 [Meerkat](https://oldtimerza.github.io/meerkat-site/)
 
-A simple keyboard driven, VIM-styled todo manager. This is very similar to the Meerkat project I have previously worked on, that version used electron js which I had issues with and decided to make the switch to .Net to save on size.
+A simple keyboard driven, VIM-styled todo manager with an emphasis on tracking time to completion of tasks.
+The philosophy behind Meerkat is to be accessible easily and quickly at all times, and to be completely driven from the keyboard with easy to remember shortcuts.
+
+The main goal of this application is to make it easy to keep track of tasks that are worked on through out the course of a day and to track how long each task is worked on
+to make time sheet capture easy and painless.
 
 ## Requirements:
 
@@ -23,6 +27,8 @@ This application requires [.Net Core 3.1](https://dotnet.microsoft.com/download/
     k - select previous todo in list
 
     d - delete currently selected todo
+
+    s - start/stop the timer for tracking this task as actively being worked on.
 
     space - toggle completeness of currently selected todo
 
