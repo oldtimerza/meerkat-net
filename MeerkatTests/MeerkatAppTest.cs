@@ -40,8 +40,8 @@ namespace MeerkatTests
 
             Assert.AreEqual(State.NAVIGATION, app.CurrentState);
             Assert.IsNotNull(app.Todos);
-            Assert.AreEqual(1, app.Todos.Count);
-            Todo actualTodo = app.Todos.First();
+            Assert.AreEqual(2, app.Todos.Count);
+            Todo actualTodo = app.Todos.ElementAt(1);
             Assert.AreEqual(todo, actualTodo);
         }
 
