@@ -1,14 +1,17 @@
 ﻿using Meerkat.Models;
 using Meerkat.ViewModels.Commands;
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Meerkat.ViewModels
 {
-    public class TodosViewModel : ViewModelBase
+    public class MeerkatAppViewModel : ViewModelBase
     {
         private IStateTracker stateTracker;
         private ITodoTracker todoTracker;
+        private DispatcherTimer dispatcherTimer;
         private bool focusInsertText;
         private int selectedIndex;
         private ICommand addTodo;
@@ -17,13 +20,20 @@ namespace Meerkat.ViewModels
         private ICommand previousTodoItem;
         private ICommand toggleTodo;
         private ICommand removeTodo;
+        private ICommand toggleTodoIsActive;
 
-        public TodosViewModel(IStateTracker stateTracker, ITodoTracker todoTracker)
+        public MeerkatAppViewModel(IStateTracker stateTracker, ITodoTracker todoTracker, DispatcherTimer dispatcherTimer)
         {
             this.stateTracker = stateTracker;
             this.todoTracker = todoTracker;
+            this.dispatcherTimer = dispatcherTimer;
+            this.dispatcherTimer.Tick += new System.EventHandler(TimeChanged);
         }
 
+        private void TimeChanged(object sender, EventArgs e)
+        {
+            OnPropertyChanged("Todos");
+        }
 
         public IReadOnlyCollection<Todo> Todos
         {
@@ -154,6 +164,23 @@ namespace Meerkat.ViewModels
             }
         }
 
+        public ICommand ToggleTodoIsActive
+        {
+            get
+            {
+                if(toggleTodoIsActive == null)
+                {
+                    toggleTodoIsActive = new RelayCommand(p =>
+                    {
+                        todoTracker.ToggleActiveTimerForTodo(SelectedIndex);
+                        OnPropertyChanged("Todos");
+                    },
+                    p => stateTracker.CurrentState == State.NAVIGATION);
+                }
+                return toggleTodoIsActive;
+            }
+        }
+
         public bool FocusInsertText
         {
             get
@@ -168,6 +195,7 @@ namespace Meerkat.ViewModels
             }
         }
 
+        //TODO: this needs to be moved into the MeerkatApp Model, this shouldn't be handled by the ViewModel.
         public int SelectedIndex
         {
             get
@@ -177,7 +205,7 @@ namespace Meerkat.ViewModels
 
             set
             {
-                selectedIndex = value;
+                selectedIndex = value < 0 ? 0 : value;
                 OnPropertyChanged("SelectedIndex");
             }
         }

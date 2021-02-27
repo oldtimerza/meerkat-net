@@ -35,8 +35,9 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Style="{StaticResource TodoItem}">
-                        <CheckBox Style="{ StaticResource TodoListItemCheckbox }" IsChecked="{ Binding Done }"/>
+                        <CheckBox Style="{ StaticResource TodoListItemCheckbox }" IsChecked="{ Binding Done, Mode=OneWay}" />
                         <TextBlock Style="{ StaticResource TodoListItemDescription }" Text="{ Binding Message }" />
+                        <TextBlock Style="{ StaticResource TodoListItemTime}" Text="{Binding TimeActive}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -55,6 +56,9 @@
         <KeyBinding
             Key="Space"
             Command="{ Binding ToggleTodo }" />
+        <KeyBinding
+            Key="S"
+            Command="{Binding ToggleTodoIsActive}" />
         <KeyBinding
             Key="D"
             Command="{ Binding RemoveTodo }" />

@@ -4,6 +4,8 @@ using Meerkat.ViewModels;
 using Ninject;
 using Stateless;
 using System.Windows;
+using System.Windows.Threading;
+using System;
 
 namespace Meerkat
 {
@@ -21,6 +23,9 @@ namespace Meerkat
             ConfigureContainer();
             ComposeObjects();
             Current.MainWindow.Show();
+            DispatcherTimer dispatcherTimer = container.Get<DispatcherTimer>();
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
         }
 
         private void ConfigureContainer()
@@ -29,15 +34,16 @@ namespace Meerkat
             container.Bind<IRepository<Todo>>().To<TodoRepository>();
             container.Bind<StateMachine<State, Models.Trigger>>().ToMethod<StateMachine<State, Models.Trigger>>(context => new StateMachine<State, Models.Trigger>(State.NAVIGATION));
             container.Bind<IStateTracker, ITodoTracker>().To<MeerkatApp>().InSingletonScope();
-            container.Bind<ViewModelBase>().To<TodosViewModel>();
+            container.Bind<ViewModelBase>().To<MeerkatAppViewModel>();
+            container.Bind<DispatcherTimer>().To<DispatcherTimer>().InSingletonScope();
         }
 
         private void ComposeObjects()
         {
-            ViewModelBase todosViewModel = container.Get<ViewModelBase>();
+            ViewModelBase meerkatAppViewModel = container.Get<ViewModelBase>();
             Current.MainWindow = container.Get<MainWindow>();
             Current.MainWindow.Title = "Meerkat";
-            Current.MainWindow.DataContext = todosViewModel;
+            Current.MainWindow.DataContext = meerkatAppViewModel;
         }
     }
 }

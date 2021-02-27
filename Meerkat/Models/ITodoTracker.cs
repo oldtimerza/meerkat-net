@@ -34,5 +34,12 @@ namespace Meerkat.Models
         /// </summary>
         /// <param name="id">The id of the Todo item to remove</param>
         void RemoveTodo(int id);
+
+        /// <summary>
+        /// Deactivate a Todo item's timer
+        /// </summary>
+        /// <param name="id">The id of the Todo item to deactivate</param>
+        void ToggleActiveTimerForTodo(int index);
+
     }
 }

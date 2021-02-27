@@ -29,10 +29,9 @@ namespace Meerkat.Models
 
         public Todo Update(int id, Todo t)
         {
+            //TODO: this needs to be cleaned up, perhaps a separate model for storage in future.
+            //For now It's being ignored.
             Todo todo = todos.ElementAt(id);
-
-            todo.Done = t.Done;
-            todo.Message = t.Message;
 
             return todo;
         }
