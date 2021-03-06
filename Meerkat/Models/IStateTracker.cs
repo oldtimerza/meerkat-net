@@ -19,5 +19,6 @@
         /// Change the state machines state to navigation mode.
         /// </summary>
         void EnterNavigation();
+
     }
 }

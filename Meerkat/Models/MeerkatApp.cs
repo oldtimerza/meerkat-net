@@ -10,6 +10,7 @@ namespace Meerkat.Models
     public class MeerkatApp : IStateTracker, ITodoTracker
     {
         private StateMachine<State, Trigger> stateMachine;
+        private int selectedIndex;
         private IList<Todo> todos;
         private IRepository<Todo> repository;
         private StateMachine<State, Trigger>.TriggerWithParameters<Todo> createTodoTrigger;
@@ -49,6 +50,14 @@ namespace Meerkat.Models
             get
             {
                 return this.progress;
+            }
+        }
+
+        public int SelectedIndex 
+        {
+            get
+            {
+                return this.selectedIndex;
             }
         }
 
@@ -108,6 +117,16 @@ namespace Meerkat.Models
         {
             Todo todo = todos.ElementAt(index);
             todo.ToggleActiveTimer();
+        }
+
+        public void SelectNextTodo()
+        {
+            selectedIndex = Utilities.Math.Mod(selectedIndex + 1, todos.Count);
+        }
+
+        public void SelectPreviousTodo()
+        {
+            selectedIndex = Utilities.Math.Mod(selectedIndex - 1, todos.Count);
         }
     }
 }

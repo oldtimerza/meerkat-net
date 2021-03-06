@@ -31,12 +31,12 @@
             </TextBox.InputBindings>
         </TextBox>
         <ProgressBar Grid.Row="1" Style="{ StaticResource ProgressBar }" Minimum="0" Maximum="1" Value="{ Binding Progress, Mode=OneWay}" />
-        <ListBox Grid.Row="2" Style="{StaticResource TodoList }" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex }">
+        <ListBox Grid.Row="2" Style="{StaticResource TodoList }" ItemsSource="{ Binding Todos }" SelectedIndex="{ Binding SelectedIndex, Mode=OneWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Style="{StaticResource TodoItem}">
                         <CheckBox Style="{ StaticResource TodoListItemCheckbox }" IsChecked="{ Binding Done, Mode=OneWay}" />
-                        <TextBlock Style="{ StaticResource TodoListItemDescription }" Text="{ Binding Message }" />
+                        <TextBlock Style="{ StaticResource TodoListItemDescription }" Text="{ Binding Message }" TextWrapping="Wrap"/>
                         <TextBlock Style="{ StaticResource TodoListItemTime}" Text="{Binding TimeActive}" />
                     </StackPanel>
                 </DataTemplate>

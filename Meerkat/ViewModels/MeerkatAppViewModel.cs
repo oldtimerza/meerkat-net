@@ -13,7 +13,6 @@ namespace Meerkat.ViewModels
         private ITodoTracker todoTracker;
         private DispatcherTimer dispatcherTimer;
         private bool focusInsertText;
-        private int selectedIndex;
         private ICommand addTodo;
         private ICommand enterInsertMode;
         private ICommand nextTodoItem;
@@ -33,13 +32,19 @@ namespace Meerkat.ViewModels
         private void TimeChanged(object sender, EventArgs e)
         {
             OnPropertyChanged("Todos");
+            OnPropertyChanged("SelectedIndex");
         }
 
-        public IReadOnlyCollection<Todo> Todos
+        public IReadOnlyCollection<TodoViewModel> Todos
         {
             get
             {
-                return todoTracker.Todos;
+                List<TodoViewModel> todoViewModels = new List<TodoViewModel>();
+                foreach(Todo todo in todoTracker.Todos)
+                {
+                    todoViewModels.Add(TodoViewModel.From(todo));
+                }
+                return todoViewModels;
             }
         }
 
@@ -104,7 +109,8 @@ namespace Meerkat.ViewModels
                 {
                     nextTodoItem = new RelayCommand(p =>
                     {
-                        SelectedIndex = Utilities.Math.Mod(SelectedIndex + 1, todoTracker.Todos.Count);
+                        todoTracker.SelectNextTodo();
+                        OnPropertyChanged("SelectedIndex");
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
@@ -120,7 +126,8 @@ namespace Meerkat.ViewModels
                 {
                     previousTodoItem = new RelayCommand(p =>
                     {
-                        SelectedIndex = Utilities.Math.Mod(SelectedIndex - 1, todoTracker.Todos.Count);
+                        todoTracker.SelectPreviousTodo();
+                        OnPropertyChanged("SelectedIndex");
                     },
                     p => stateTracker.CurrentState == State.NAVIGATION);
                 }
@@ -195,18 +202,11 @@ namespace Meerkat.ViewModels
             }
         }
 
-        //TODO: this needs to be moved into the MeerkatApp Model, this shouldn't be handled by the ViewModel.
         public int SelectedIndex
         {
             get
             {
-                return selectedIndex;
-            }
-
-            set
-            {
-                selectedIndex = value < 0 ? 0 : value;
-                OnPropertyChanged("SelectedIndex");
+                return todoTracker.SelectedIndex;
             }
         }
     }
