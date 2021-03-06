@@ -97,5 +97,30 @@ namespace MeerkatTests
             double halfComplete = 0.5;
             Assert.AreEqual(halfComplete, app.Progress);
         }
+
+        [TestMethod]
+        public void ShouldSelectNextTodo()
+        {
+            Todo doneTodo = new Todo(true, "Done todo");
+            app.CreateTodo(doneTodo);
+
+            app.SelectNextTodo();
+
+            Assert.AreEqual(1, app.SelectedIndex);
+        }
+
+        [TestMethod]
+        public void ShouldSelectPreviousTodo()
+        {
+            Todo doneTodo = new Todo(true, "Done todo");
+            app.CreateTodo(doneTodo);
+            app.EnterInsert();
+            app.CreateTodo(doneTodo);
+
+            app.SelectPreviousTodo();
+            app.SelectPreviousTodo();
+
+            Assert.AreEqual(1, app.SelectedIndex);
+        }
     }
 }

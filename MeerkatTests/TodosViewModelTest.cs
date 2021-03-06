@@ -25,13 +25,13 @@ namespace MeerkatTests
         }
 
         [TestMethod]
-        public void ShouldHaveModelsTodos()
+        public void ShouldConvertTodosToViewModel()
         {
             List<Todo> expectedTodos = new List<Todo>();
             expectedTodos.Add(new Todo(false, "Test todo"));
             mockTodoTracker.Setup(tracker => tracker.Todos).Returns(expectedTodos.AsReadOnly());
 
-            IReadOnlyCollection<Todo> actualTodos = todosViewModel.Todos;
+            IReadOnlyCollection<TodoViewModel> actualTodos = todosViewModel.Todos;
 
             Assert.AreEqual(1, actualTodos.Count);
         }
@@ -67,30 +67,17 @@ namespace MeerkatTests
         [TestMethod]
         public void ShouldSelectNextIndex()
         {
-            List<Todo> todos = new List<Todo>();
-            todos.Add(new Todo(false, "doesnt matter"));
-            todos.Add(new Todo(false,"doesnt matter 2: electric boogaloo"));
-            mockTodoTracker.Setup(tracker => tracker.Todos).Returns(todos.AsReadOnly);
-            int currentIndex = todosViewModel.SelectedIndex;
-
             todosViewModel.NextTodoItem.Execute(null);
 
-            Assert.AreEqual(currentIndex + 1, todosViewModel.SelectedIndex);
+            mockTodoTracker.Verify(tracker => tracker.SelectNextTodo());
         }
 
         [TestMethod]
         public void ShouldSelectPreviousIndexWithWrap()
         {
-            List<Todo> todos = new List<Todo>();
-            todos.Add(new Todo(false, "doesnt matter"));
-            todos.Add(new Todo(false,"doesnt matter 2: electric boogaloo"));
-            todos.Add(new Todo(false,"doesnt matter 3: revenge of the matters"));
-            mockTodoTracker.Setup(tracker => tracker.Todos).Returns(todos.AsReadOnly);
-            int currentIndex = todosViewModel.SelectedIndex;
-
             todosViewModel.PreviousTodoItem.Execute(null);
 
-            Assert.AreEqual(2, todosViewModel.SelectedIndex);
+            mockTodoTracker.Verify(tracker => tracker.SelectPreviousTodo());
         }
 
         [TestMethod]

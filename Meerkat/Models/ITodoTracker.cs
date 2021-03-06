@@ -18,6 +18,11 @@ namespace Meerkat.Models
         double Progress { get; }
 
         /// <summary>
+        /// Get the currently selected todo items index
+        /// </summary>
+        int SelectedIndex { get; }
+
+        /// <summary>
         /// Create a new Todo item in the list
         /// </summary>
         /// <param name="todo">The new Todo item</param>
@@ -40,6 +45,17 @@ namespace Meerkat.Models
         /// </summary>
         /// <param name="id">The id of the Todo item to deactivate</param>
         void ToggleActiveTimerForTodo(int index);
+
+        /// <summary>
+        /// Change the currently selected item to the next item
+        /// </summary>
+        void SelectNextTodo();
+
+        /// <summary>
+        /// Change the currently selected item to the previous item
+        /// </summary>
+        void SelectPreviousTodo();
+
 
     }
 }
